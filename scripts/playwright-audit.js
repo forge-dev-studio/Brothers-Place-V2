@@ -37,7 +37,6 @@ const PAGES = [
   { slug: "programs-case-management",       path: "programs/case-management/" },
   { slug: "programs-spiritual-formation",   path: "programs/spiritual-formation/" },
   { slug: "programs-reintegration-and-jobs",path: "programs/reintegration-and-jobs/" },
-  { slug: "programs-second-step-program",   path: "programs/second-step-program/" },
   { slug: "get-help",                       path: "get-help/" },
   { slug: "get-help-apply",                 path: "get-help/apply/" },
   { slug: "get-help-eligibility-and-faq",   path: "get-help/eligibility-and-faq/" },
