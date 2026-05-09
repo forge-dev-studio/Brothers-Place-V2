@@ -3,11 +3,11 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.classList.add('js');
   initMobileNav();
   initScrollAnimations();
   initCountUp();
   initStickyHeader();
-  initHeroHeader();
   initDonateTiers();
   initNewsletterStub();
 });
@@ -59,14 +59,6 @@ function initStickyHeader() {
     if (!ticking) { requestAnimationFrame(update); ticking = true; }
   }, { passive: true });
   update();
-}
-
-/* --- Header transparency over hero ---------- */
-function initHeroHeader() {
-  const header = document.querySelector('.header');
-  const hero = document.querySelector('.hero, .page-hero');
-  if (!header || !hero) return;
-  header.classList.add('is-on-hero');
 }
 
 /* --- Scroll-triggered fade-up ---------------- */

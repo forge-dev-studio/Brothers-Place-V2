@@ -1,0 +1,16 @@
+/* Floyd County map -- Brother's Place V2 */
+.trust-block__map {
+  max-width: 420px;
+  margin: var(--s-8) auto;
+  color: var(--c-navy-900); /* SVG inherits via currentColor */
+  position: relative;
+}
+.trust-block__map svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 12px rgba(15, 27, 51, 0.06));
+}
+@media (max-width: 600px) {
+  .trust-block__map { max-width: 320px; margin: var(--s-6) auto; }
+}

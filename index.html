@@ -38,6 +38,7 @@
   <link rel="preload" as="image" href="/Brothers-Place-V2/images/hero-home.jpg">
   <link rel="stylesheet" href="/Brothers-Place-V2/css/tokens.css">
   <link rel="stylesheet" href="/Brothers-Place-V2/css/styles.css">
+  <link rel="stylesheet" href="/Brothers-Place-V2/css/map.css">
 
   <!-- Schema.org JSON-LD: NonprofitOrganization + LocalBusiness -->
   <script type="application/ld+json">
@@ -259,23 +260,53 @@
       <h2 class="trust-block__heading">Serving Northwest Georgia</h2>
       <p class="trust-block__lede">Rooted on Maple Street in Rome and walking alongside men, families, churches, and civic groups across Floyd County and the Northwest Georgia region.</p>
       <div class="trust-block__map" aria-hidden="true">
-        <svg viewBox="0 0 240 240" fill="none">
+        <svg viewBox="0 0 240 240" fill="none" role="img">
+          <!-- Compass: simple N indicator -->
           <g stroke="currentColor" stroke-width="1" stroke-opacity="0.45" stroke-linecap="round">
             <path d="M120 14v10"/>
           </g>
           <text x="120" y="11" text-anchor="middle" fill="currentColor" fill-opacity="0.55" font-family="Inter, sans-serif" font-size="9" letter-spacing="2">N</text>
-          <path d="M62 52 L88 38 L132 42 L168 50 L186 70 L194 100 L196 132 L188 164 L172 190 L142 200 L102 200 L72 188 L52 162 L46 132 L52 96 L56 72 Z"
+
+          <!-- Adjacent county labels -->
+          <g fill="currentColor" fill-opacity="0.35" font-family="Inter, sans-serif" font-size="8" font-weight="500" letter-spacing="1.5">
+            <text x="190" y="40" text-anchor="middle">GORDON</text>
+            <text x="215" y="130" text-anchor="middle">BARTOW</text>
+            <text x="130" y="215" text-anchor="middle">POLK</text>
+            <text x="20" y="110" text-anchor="middle">CHATTOOGA</text>
+          </g>
+
+          <!-- Floyd County outline (stylized real shape) -->
+          <path d="M 12,38 L 38,22 L 78,18 L 130,20 L 178,28 L 218,42
+                   L 226,68 L 230,98 L 226,128 L 220,160 L 208,188
+                   L 188,210 L 156,222 L 122,226 L 88,224 L 58,212
+                   L 36,192 L 22,164 L 14,134 L 10,98 L 14,68 Z"
                 stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"
                 fill="currentColor" fill-opacity="0.06"/>
-          <path d="M70 86 C 90 96, 110 110, 122 122 C 134 134, 146 156, 168 174"
-                stroke="currentColor" stroke-width="1" stroke-opacity="0.35" stroke-linecap="round" fill="none"/>
-          <g transform="translate(120 122)">
-            <circle r="22" fill="#E8B958" fill-opacity="0.18"/>
-            <circle r="13" fill="#E8B958" fill-opacity="0.32"/>
+
+          <!-- US-27 (north-south through Rome) -->
+          <path d="M 108,22 C 106,60 108,90 110,124 C 112,160 116,200 118,224"
+                stroke="#E8B958" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" fill="none"/>
+
+          <!-- US-411 (NE out of Rome) -->
+          <path d="M 110,124 C 138,108 168,80 196,42"
+                stroke="#E8B958" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" fill="none"/>
+
+          <!-- US-27 spur SW out of Rome -->
+          <path d="M 110,124 C 84,138 56,168 36,192"
+                stroke="#E8B958" stroke-width="0.9" stroke-opacity="0.25" stroke-linecap="round" fill="none"/>
+
+          <!-- Coosa River S-curve through Rome -->
+          <path d="M 60,80 C 84,96 96,108 110,124 C 124,140 138,168 158,200"
+                stroke="currentColor" stroke-width="1.2" stroke-opacity="0.25" stroke-linecap="round" fill="none"/>
+
+          <!-- Rome marker (glowing gold pin) -->
+          <g transform="translate(110 124)">
+            <circle r="24" fill="#E8B958" fill-opacity="0.15"/>
+            <circle r="14" fill="#E8B958" fill-opacity="0.32"/>
             <circle r="6"  fill="#E8B958"/>
-            <circle r="2.5" fill="#0F1B33"/>
+            <circle r="2"  fill="#0F1B33"/>
           </g>
-          <text x="120" y="156" text-anchor="middle" fill="currentColor" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="2">ROME</text>
+          <text x="110" y="158" text-anchor="middle" fill="currentColor" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="2">ROME</text>
         </svg>
       </div>
       <p class="trust-block__partners">Partner logos appear here as church and civic partners join the work.</p>
