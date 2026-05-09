@@ -1,7 +1,7 @@
 [
   {
     "slug": "index",
-    "url": "http://127.0.0.1:5500/Brothers-Place/",
+    "url": "http://127.0.0.1:5500/Brothers-Place-V2/",
     "viewport": "desktop",
     "httpStatus": 200,
     "consoleErrors": [],
@@ -11,7 +11,7 @@
   },
   {
     "slug": "index",
-    "url": "http://127.0.0.1:5500/Brothers-Place/",
+    "url": "http://127.0.0.1:5500/Brothers-Place-V2/",
     "viewport": "mobile",
     "httpStatus": 200,
     "consoleErrors": [],

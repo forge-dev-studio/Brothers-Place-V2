@@ -7,7 +7,7 @@
  *  2. Copy + crop the 6 locked v2-references into named hero JPEGs.
  *  3. Compose the 1200x630 OG image from the dusk-house hero.
  *
- * Output: c:/Users/corey/Desktop/Brothers-Place/images/
+ * Output: c:/Users/corey/Desktop/Brothers-Place-V2/images/
  */
 
 const fs = require("fs");

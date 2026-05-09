@@ -3,7 +3,7 @@
  * Brother's Place V2 - Playwright audit harness.
  *
  * Spawns a local http.server, navigates to every page in the site under
- * /Brothers-Place/ at desktop (1440x900) and mobile (390x844), takes full-page
+ * /Brothers-Place-V2/ at desktop (1440x900) and mobile (390x844), takes full-page
  * screenshots, captures console + pageerror events, captures all failed network
  * requests, and writes a report to tests/playwright/audit-report.json.
  *
@@ -23,7 +23,7 @@ const path = require("path");
 
 const ROOT = "C:/Users/corey/Desktop/Brothers-Place";
 const PORT = 5500;
-const BASE = `http://127.0.0.1:${PORT}/Brothers-Place/`;
+const BASE = `http://127.0.0.1:${PORT}/Brothers-Place-V2/`;
 const SCREEN_DIR = path.join(ROOT, "tests/playwright/screenshots");
 const REPORT_PATH = path.join(ROOT, "tests/playwright/audit-report.json");
 
@@ -52,7 +52,7 @@ const PAGES = [
 ];
 
 function startServer() {
-  // Serve the parent directory so /Brothers-Place/ in URLs resolves to this repo,
+  // Serve the parent directory so /Brothers-Place-V2/ in URLs resolves to this repo,
   // mirroring how GitHub Pages serves the site under that subpath.
   const py = process.platform === "win32" ? "py" : "python";
   const parent = path.resolve(ROOT, "..");

@@ -2,7 +2,7 @@
 /**
  * Brother's Place V2 - Hero reference image generation via gpt-image-2.
  * Generates 6 hero candidates spanning 3 aesthetic directions (2 each).
- * Output: c:/Users/corey/Desktop/Brothers-Place/v2-references/
+ * Output: c:/Users/corey/Desktop/Brothers-Place-V2/v2-references/
  */
 
 const fs = require("fs");
@@ -29,7 +29,7 @@ if (!process.env.OPENAI_API_KEY) {
   process.exit(1);
 }
 
-const OUT_DIR = "C:/Users/corey/Desktop/Brothers-Place/v2-references";
+const OUT_DIR = "C:/Users/corey/Desktop/Brothers-Place-V2/v2-references";
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
 const COMMON = [
