@@ -513,6 +513,16 @@ blockquote {
   position: relative;
   overflow: hidden;
 }
+.section--feature h1,
+.section--feature h2,
+.section--feature h3,
+.section--feature h4 { color: var(--c-cream); }
+.section--feature .section-header p { color: rgba(242, 235, 220, 0.78); }
+.section--feature .badge { background: transparent; color: var(--c-window); border-color: var(--c-window); }
+.section--cream-2 { color: var(--c-navy-900); }
+.section--cream-2 h1,
+.section--cream-2 h2,
+.section--cream-2 h3 { color: var(--c-navy-900); }
 .section--feature::before {
   content: "";
   position: absolute; top: -200px; right: -200px;

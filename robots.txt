@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://brothersplace.org/sitemap.xml
+Sitemap: https://forge-dev-studio.github.io/Brothers-Place-V2/sitemap.xml
 
-# Brother's Place — Christ-centered men's recovery ministry
-# Rome, GA | brothersplace.org
+# Brother's Place, Christ-centered men's recovery ministry
+# Rome, GA
