@@ -80,6 +80,14 @@ function initScrollAnimations() {
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
   els.forEach(el => observer.observe(el));
+
+  // Safety net: if a user prefers reduced motion, scrolls past too fast,
+  // or a screenshot tool captures the page before sections enter view,
+  // reveal everything after 2.5s so content is never invisible.
+  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(() => {
+    els.forEach(el => el.classList.add('is-visible'));
+  }, prefersReduce ? 0 : 2500);
 }
 
 /* --- Count-up numbers ------------------------ */
@@ -101,6 +109,19 @@ function initCountUp() {
   }, { threshold: 0.4 });
 
   counters.forEach(el => observer.observe(el));
+
+  // Safety: if counters never enter view (very short pages, screenshots, etc.)
+  // snap them to their final value after 3s.
+  setTimeout(() => {
+    counters.forEach(el => {
+      if (Number.isFinite(parseInt(el.dataset.count, 10))) {
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        const prefix = el.dataset.prefix || '';
+        el.textContent = prefix + target.toLocaleString() + suffix;
+      }
+    });
+  }, 3000);
 }
 
 function animateCount(el) {

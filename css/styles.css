@@ -568,39 +568,7 @@ blockquote {
 .journey-block {
   background: var(--c-cream);
   padding-block: var(--s-24);
-  text-align: center;
 }
-.journey-block__inner {
-  max-width: 880px;
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-.journey-block__scripture {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
-  line-height: var(--lh-snug);
-  color: var(--c-navy-900);
-  margin: var(--s-6) auto;
-  max-width: 30ch;
-}
-.journey-block__attribution {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: var(--fs-tiny);
-  font-weight: var(--fw-semi);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--c-window-3);
-  margin-top: var(--s-4);
-}
-.journey-block__text {
-  font-size: var(--fs-lead);
-  color: var(--c-ink-soft);
-  margin-top: var(--s-8);
-  line-height: var(--lh-base);
-}
-.journey-block .btn { margin-top: var(--s-8); }
 
 /* --- Trust block --------------------------------------------------------- */
 .trust-block {
@@ -1071,3 +1039,59 @@ blockquote {
 .form-section .form-label { margin-top: var(--s-5); }
 .form-section .form-label:first-of-type { margin-top: 0; }
 .form-section .btn--primary { margin-top: var(--s-8); }
+
+/* --- Welcome (home, between hero and proof) ----------------------------- */
+.welcome { background: var(--c-cream); }
+.welcome__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--s-12);
+  align-items: center;
+}
+.welcome__copy h2 { margin-bottom: var(--s-4); }
+.welcome__copy p { font-size: var(--fs-lede, 1.125rem); margin-bottom: var(--s-6); color: var(--c-navy-700, var(--c-navy-900)); }
+.welcome__image img {
+  width: 100%; height: auto; display: block;
+  border-radius: var(--r-lg, 12px);
+  box-shadow: 0 12px 40px rgba(15, 27, 51, 0.18);
+}
+@media (max-width: 900px) {
+  .welcome__inner { grid-template-columns: 1fr; gap: var(--s-8); }
+}
+
+/* --- Restoring Lives (home, between pillars and feature) ---------------- */
+.restoring__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s-12);
+  align-items: center;
+}
+.restoring__image img {
+  width: 100%; height: auto; display: block;
+  border-radius: var(--r-lg, 12px);
+  box-shadow: 0 12px 40px rgba(15, 27, 51, 0.18);
+}
+.restoring__lede { font-style: italic; color: var(--c-window-2, var(--c-window)); margin-block: var(--s-4) var(--s-6); }
+@media (max-width: 900px) {
+  .restoring__inner { grid-template-columns: 1fr; gap: var(--s-8); }
+  .restoring__image { order: -1; }
+}
+
+/* --- Journey of Hope (updated to two-column with image) ----------------- */
+.journey-block__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s-12);
+  align-items: center;
+}
+.journey-block__image img {
+  width: 100%; height: auto; display: block;
+  border-radius: var(--r-lg, 12px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+.journey-block__scripture { font-family: var(--font-display); font-style: italic; font-size: var(--fs-h3); line-height: 1.4; margin-block: var(--s-4) var(--s-2); }
+.journey-block__attribution { display: block; color: var(--c-window); letter-spacing: 0.1em; text-transform: uppercase; font-size: var(--fs-small); margin-bottom: var(--s-6); }
+.journey-block__text { margin-bottom: var(--s-6); }
+@media (max-width: 900px) {
+  .journey-block__inner { grid-template-columns: 1fr; gap: var(--s-8); }
+}
