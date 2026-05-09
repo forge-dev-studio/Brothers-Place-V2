@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "index",
+    "url": "http://127.0.0.1:5500/Brothers-Place/",
+    "viewport": "desktop",
+    "httpStatus": 200,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "screenshot": "tests/playwright/screenshots/desktop/index.png"
+  },
+  {
+    "slug": "index",
+    "url": "http://127.0.0.1:5500/Brothers-Place/",
+    "viewport": "mobile",
+    "httpStatus": 200,
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "screenshot": "tests/playwright/screenshots/mobile/index.png"
+  }
+]

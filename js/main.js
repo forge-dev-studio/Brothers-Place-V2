@@ -1,108 +1,103 @@
 /* ============================================
-   BROTHER'S PLACE — Shared JavaScript
+   Brother's Place V2 - Shared JavaScript
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initScrollAnimations();
-  initFAQ();
   initCountUp();
   initStickyHeader();
+  initHeroHeader();
+  initDonateTiers();
+  initNewsletterStub();
 });
 
-/* --- Mobile Navigation --- */
+/* --- Mobile Navigation ----------------------- */
 function initMobileNav() {
   const toggle = document.querySelector('.header__toggle');
   const nav = document.querySelector('.header__nav');
   if (!toggle || !nav) return;
 
+  function close() {
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
   toggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('header__nav--open');
-    toggle.setAttribute('aria-expanded', isOpen);
+    const isOpen = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Close on ESC
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('header__nav--open')) {
-      nav.classList.remove('header__nav--open');
-      toggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+      close();
       toggle.focus();
     }
   });
 
-  // Mobile dropdowns
-  document.querySelectorAll('.header__dropdown > .header__nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-      if (window.innerWidth <= 900) {
-        e.preventDefault();
-        link.closest('.header__dropdown').classList.toggle('open');
-      }
+  // On nav-link click in mobile, close the menu (unless it's a dropdown trigger)
+  nav.querySelectorAll('a:not(.header__dropdown > .header__nav-link)').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.innerWidth <= 960) close();
     });
   });
 }
 
-/* --- Sticky Header Shadow --- */
+/* --- Sticky header state --------------------- */
 function initStickyHeader() {
   const header = document.querySelector('.header');
   if (!header) return;
 
   let ticking = false;
+  function update() {
+    header.classList.toggle('is-scrolled', window.scrollY > 12);
+    ticking = false;
+  }
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        header.classList.toggle('header--scrolled', window.scrollY > 10);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
 }
 
-/* --- Scroll Animations --- */
+/* --- Header transparency over hero ---------- */
+function initHeroHeader() {
+  const header = document.querySelector('.header');
+  const hero = document.querySelector('.hero, .page-hero');
+  if (!header || !hero) return;
+  header.classList.add('is-on-hero');
+}
+
+/* --- Scroll-triggered fade-up ---------------- */
 function initScrollAnimations() {
-  const elements = document.querySelectorAll('.fade-up');
-  if (!elements.length) return;
+  const els = document.querySelectorAll('.fade-up');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
-  elements.forEach(el => observer.observe(el));
+  els.forEach(el => observer.observe(el));
 }
 
-/* --- FAQ Accordion --- */
-function initFAQ() {
-  document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-      const item = button.closest('.faq-item');
-      const isOpen = item.classList.contains('faq-item--open');
-      
-      // Close all
-      document.querySelectorAll('.faq-item--open').forEach(openItem => {
-        openItem.classList.remove('faq-item--open');
-        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-      });
-
-      // Open clicked (if it was closed)
-      if (!isOpen) {
-        item.classList.add('faq-item--open');
-        button.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-}
-
-/* --- Count-Up Animation --- */
+/* --- Count-up numbers ------------------------ */
 function initCountUp() {
   const counters = document.querySelectorAll('[data-count]');
   if (!counters.length) return;
+  if (!('IntersectionObserver' in window)) {
+    counters.forEach(animateCount);
+    return;
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -111,7 +106,7 @@ function initCountUp() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
 
   counters.forEach(el => observer.observe(el));
 }
@@ -120,39 +115,49 @@ function animateCount(el) {
   const target = parseInt(el.dataset.count, 10);
   const suffix = el.dataset.suffix || '';
   const prefix = el.dataset.prefix || '';
-  const duration = 2000;
+  const duration = 1800;
   const start = performance.now();
 
-  function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
     const current = Math.round(eased * target);
     el.textContent = prefix + current.toLocaleString() + suffix;
-    if (progress < 1) requestAnimationFrame(update);
+    if (progress < 1) requestAnimationFrame(tick);
   }
-
-  requestAnimationFrame(update);
+  requestAnimationFrame(tick);
 }
 
-/* --- Donate Toggle --- */
-function initDonateToggle() {
-  const toggleBtns = document.querySelectorAll('.donate-toggle__btn');
-  toggleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      toggleBtns.forEach(b => b.classList.remove('donate-toggle__btn--active'));
-      btn.classList.add('donate-toggle__btn--active');
+/* --- Donate tier selection ------------------- */
+function initDonateTiers() {
+  const tiers = document.querySelectorAll('.tier-card');
+  if (!tiers.length) return;
+  tiers.forEach(tier => {
+    tier.addEventListener('click', () => {
+      tiers.forEach(t => t.classList.remove('is-selected'));
+      tier.classList.add('is-selected');
+      const amount = tier.dataset.amount;
+      const linkBtn = document.querySelector('[data-donate-link]');
+      if (linkBtn && amount) {
+        linkBtn.href = linkBtn.dataset.baseUrl + (linkBtn.dataset.baseUrl.includes('?') ? '&' : '?') + 'amount=' + amount;
+      }
     });
   });
 }
 
-/* --- Donate Tier Selection --- */
-function initDonateTiers() {
-  const tiers = document.querySelectorAll('.donate-tier');
-  tiers.forEach(tier => {
-    tier.addEventListener('click', () => {
-      tiers.forEach(t => t.classList.remove('donate-tier--selected'));
-      tier.classList.add('donate-tier--selected');
-    });
+/* --- Newsletter stub ------------------------- */
+function initNewsletterStub() {
+  const form = document.querySelector('#newsletter-form');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = form.querySelector('input[type="email"]')?.value || '';
+    if (!email) return;
+    // No backend endpoint yet. Show a soft confirmation.
+    const button = form.querySelector('button[type="submit"]');
+    if (button) {
+      button.textContent = 'Thank you';
+      button.disabled = true;
+    }
   });
 }
