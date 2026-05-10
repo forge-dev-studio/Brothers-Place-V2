@@ -386,10 +386,12 @@ blockquote {
   min-height: clamp(360px, 50vh, 520px);
   display: flex; align-items: flex-end;
   color: var(--c-cream);
+  background: linear-gradient(180deg, var(--c-navy-800, var(--c-navy-900)) 0%, var(--c-navy-900) 100%);
   overflow: hidden;
   isolation: isolate;
   margin-top: -1px;
 }
+.page-hero:not(:has(.page-hero__bg)) { min-height: clamp(280px, 38vh, 400px); }
 .page-hero__bg {
   position: absolute; inset: 0;
   background-size: cover;
@@ -1076,6 +1078,12 @@ blockquote {
   gap: var(--s-12);
   align-items: center;
 }
+.restoring__inner:not(:has(.restoring__image)) {
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
 .restoring__image img {
   width: 100%; height: auto; display: block;
   border-radius: var(--r-lg, 12px);
@@ -1094,6 +1102,13 @@ blockquote {
   gap: var(--s-12);
   align-items: center;
 }
+.journey-block__inner:not(:has(.journey-block__image)) {
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+.journey-block__inner:not(:has(.journey-block__image)) .gold-rule { margin-inline: auto; }
 .journey-block__image img {
   width: 100%; height: auto; display: block;
   border-radius: var(--r-lg, 12px);
