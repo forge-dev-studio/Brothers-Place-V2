@@ -1078,7 +1078,8 @@ blockquote {
   gap: var(--s-12);
   align-items: center;
 }
-.restoring__inner:not(:has(.restoring__image)) {
+.restoring__inner:not(:has(.restoring__image)),
+.welcome__inner:not(:has(.welcome__image)) {
   grid-template-columns: 1fr;
   max-width: 720px;
   margin-inline: auto;
