@@ -142,16 +142,31 @@
     <div class="hero__overlay"></div>
     <div class="container">
       <div class="hero__content fade-up">
-        <span class="badge badge--on-image">Rome, Georgia</span>
-        <h1>Hope for Men Rebuilding Their Lives.</h1>
+        <span class="hero__eyebrow"><span class="hero__eyebrow-dot" aria-hidden="true"></span>Rome, Georgia</span>
+        <h1 class="hero__headline">
+          <span class="hero__word">Hope</span>
+          <span class="hero__word">for</span>
+          <span class="hero__word">Men</span>
+          <span class="hero__word">Rebuilding</span>
+          <span class="hero__word">Their</span>
+          <span class="hero__word">Lives.</span>
+        </h1>
         <p class="hero__subtitle">Brother's Place is Christ-centered supportive housing, recovery, and brotherhood for men in Rome, Georgia walking out of homelessness, addiction, and crisis.</p>
         <div class="hero__ctas">
-          <a href="/Brothers-Place-V2/get-involved/donate/" class="btn btn--primary btn--lg" id="hero-donate-cta">Donate</a>
+          <a href="/Brothers-Place-V2/get-involved/donate/" class="btn btn--primary btn--lg btn--pulse" id="hero-donate-cta">Donate</a>
           <a href="/Brothers-Place-V2/get-help/" class="btn btn--on-dark btn--lg" id="hero-gethelp-cta">Get Help</a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Hero -> Welcome divider (dark -> cream) -->
+  <div class="section-divider section-divider--down" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false">
+      <path d="M0,40 C240,80 480,0 720,32 C960,64 1200,16 1440,48 L1440,80 L0,80 Z" fill="var(--c-cream)" opacity="0.55"/>
+      <path d="M0,56 C300,16 600,72 900,40 C1140,16 1320,56 1440,32 L1440,80 L0,80 Z" fill="var(--c-cream)"/>
+    </svg>
+  </div>
 
   <!-- ===== WELCOME ===== -->
   <section class="welcome section" aria-label="What Brother's Place is">
@@ -224,6 +239,14 @@
     </div>
   </section>
 
+  <!-- Restoring (cream) -> Feature (navy) divider -->
+  <div class="section-divider section-divider--up section-divider--on-cream" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false">
+      <path d="M0,40 C240,0 480,80 720,48 C960,16 1200,64 1440,32 L1440,80 L0,80 Z" fill="var(--c-navy-800)" opacity="0.55"/>
+      <path d="M0,24 C300,64 600,8 900,40 C1140,64 1320,24 1440,48 L1440,80 L0,80 Z" fill="var(--c-navy-900)"/>
+    </svg>
+  </div>
+
   <!-- ===== FEATURED STORY ===== -->
   <section class="section section--feature" aria-label="Featured story">
     <div class="container">
@@ -243,12 +266,20 @@
     </div>
   </section>
 
+  <!-- Feature (navy) -> Journey (cream) divider -->
+  <div class="section-divider section-divider--down section-divider--on-navy" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false">
+      <path d="M0,32 C240,72 480,8 720,40 C960,72 1200,8 1440,40 L1440,80 L0,80 Z" fill="var(--c-cream)" opacity="0.55"/>
+      <path d="M0,48 C300,8 600,64 900,32 C1140,8 1320,48 1440,24 L1440,80 L0,80 Z" fill="var(--c-cream)"/>
+    </svg>
+  </div>
+
   <!-- ===== JOURNEY OF HOPE ===== -->
   <section class="journey-block" aria-label="A journey of hope">
     <div class="container journey-block__inner fade-up" style="text-align: center;">
       <div class="journey-block__copy">
         <span class="gold-rule"></span>
-        <p class="journey-block__scripture">"You led them with a pillar of cloud by day, and with a pillar of fire by night, to illuminate the way they should go."</p>
+        <p class="journey-block__scripture">"You led them with a <em class="journey-block__cloud">pillar of cloud by day</em>, and with a <em class="journey-block__fire">pillar of fire by night</em>, to illuminate the way they should go."</p>
         <span class="journey-block__attribution">Nehemiah 9:12</span>
         <p class="journey-block__text">At Brother's Place, we believe the teachings and love of Jesus Christ are the foundation of transformation and renewal. This is not just a place to stay. It is a community where the love of Christ guides everything we do.</p>
         <a href="/Brothers-Place-V2/about/faith-foundation/" class="btn btn--primary">Our Faith Foundation</a>
@@ -297,7 +328,7 @@
 
           <!-- Rome marker (glowing gold pin) at real coords 34.257°N, -85.165°W -->
           <g transform="translate(149 152)">
-            <circle r="22" fill="#F08C2A" fill-opacity="0.15"/>
+            <circle class="trust-block__pulse" r="22" fill="#F08C2A" fill-opacity="0.15"/>
             <circle r="13" fill="#F08C2A" fill-opacity="0.32"/>
             <circle r="5.5" fill="#F08C2A"/>
             <circle r="1.8" fill="#0F1B33"/>
@@ -321,6 +352,14 @@
       </form>
     </div>
   </section>
+
+  <!-- Newsletter (cream) -> CTA (navy) divider -->
+  <div class="section-divider section-divider--up section-divider--on-cream" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false">
+      <path d="M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z" fill="var(--c-navy-800)" opacity="0.55"/>
+      <path d="M0,56 C300,24 600,72 900,40 C1140,16 1320,56 1440,32 L1440,80 L0,80 Z" fill="var(--c-navy-900)"/>
+    </svg>
+  </div>
 
   <!-- ===== CTA BANNER ===== -->
   <section class="cta-banner" aria-label="Support Brother's Place">
@@ -387,7 +426,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Brother's Place. All rights reserved. 501(c)(3) nonprofit. <a href="/Brothers-Place-V2/legal/">Privacy and Terms</a></p>
+        <p>&copy; 2026 Brother's Place. All rights reserved. 501(c)(3) nonprofit. <a href="/Brothers-Place-V2/legal/">Privacy and Terms</a> <span class="footer__forge-byline">Site built by Forge Dev.studio.</span></p>
         <div class="footer__social">
           <a href="https://www.facebook.com/profile.php?id=61552005344350" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073C24 5.446 18.627.073 12 .073S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854V15.54H7.078v-3.467h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.467h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>

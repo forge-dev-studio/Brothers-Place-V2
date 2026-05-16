@@ -132,8 +132,15 @@
   /* Elevation */
   --shadow-soft:    0 12px 40px -16px rgba(15, 27, 51, 0.35);
   --shadow-strong:  0 24px 60px -20px rgba(15, 27, 51, 0.55);
+  --shadow-lift:    0 18px 48px -18px rgba(15, 27, 51, 0.45);
   --shadow-glow:    0 0 80px -20px rgba(240, 140, 42, 0.50);
   --shadow-window:  0 -120px 200px -60px rgba(240, 140, 42, 0.18) inset;
+  --shadow-btn-primary-hover: 0 14px 28px -10px rgba(240, 140, 42, 0.55);
+  --shadow-btn-primary-pulse-lo: 0 0 0 0 rgba(240, 140, 42, 0.0), 0 0 24px -4px rgba(240, 140, 42, 0.35);
+  --shadow-btn-primary-pulse-hi: 0 0 0 0 rgba(240, 140, 42, 0.0), 0 0 36px -4px rgba(240, 140, 42, 0.55);
+
+  /* Easing */
+  --ease-rise: cubic-bezier(.16, 1, .3, 1);
 
   /* Z-index */
   --z-skip:   100;
