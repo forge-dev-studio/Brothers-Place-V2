@@ -440,15 +440,24 @@ blockquote {
 }
 .page-hero h1 {
   color: var(--c-cream);
-  font-size: var(--fs-display);
-  letter-spacing: var(--tracking-tight);
-  margin-bottom: var(--s-3);
+  font-size: clamp(2.5rem, 4.5vw + 1rem, 4rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 1.04;
+  margin-bottom: var(--s-4);
   max-width: 22ch;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.55),
+    0 6px 24px rgba(0, 0, 0, 0.50),
+    0 1px 0 rgba(15, 27, 51, 0.9);
 }
 .page-hero__subtitle {
-  font-size: var(--fs-lead);
-  color: var(--c-cream-2);
-  max-width: 52ch;
+  font-size: clamp(1.0625rem, 0.5vw + 1rem, 1.3125rem);
+  color: var(--c-cream);
+  font-weight: var(--fw-medium);
+  line-height: 1.55;
+  max-width: 56ch;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 4px 14px rgba(0, 0, 0, 0.40);
 }
 .page-hero__breadcrumbs {
   display: inline-flex; gap: var(--s-2);
@@ -456,10 +465,11 @@ blockquote {
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--c-window);
-  margin-bottom: var(--s-3);
+  margin-bottom: var(--s-4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 .page-hero__breadcrumbs a { color: var(--c-cream-2); }
-.page-hero__breadcrumbs a:hover { color: var(--c-window); }
+.page-hero__breadcrumbs a:hover { color: var(--c-sky); }
 
 /* --- Proof bar ----------------------------------------------------------- */
 .proof-bar {
