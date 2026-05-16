@@ -1,6 +1,7 @@
 /* ==========================================================================
    Brother's Place V2 - Design Tokens (source of truth)
-   Cathedral / Sanctuary aesthetic. Navy 900 night, window-gold warmth.
+   Sunset / Sanctuary aesthetic. Navy night, sunrise-orange warmth, sky-blue accent.
+   Driven by the Brother's Place logo: orange sphere with cyan crescent.
    ========================================================================== */
 
 :root {
@@ -11,11 +12,16 @@
   --c-navy-500: #2A3D63;
   --c-navy-300: #5C6E8E;
 
-  /* Color: warmth and accent */
-  --c-window:    #E8B958;
-  --c-window-2:  #C8973F;
-  --c-window-3:  #8C6726;
-  --c-horizon:   #B8754A;
+  /* Color: warmth and accent (orange family — pulled from logo sphere) */
+  --c-window:    #F08C2A;   /* primary brand orange */
+  --c-window-2:  #D46F1A;   /* deeper sunset */
+  --c-window-3:  #A24E11;   /* burnt embers */
+  --c-horizon:   #E6724A;   /* warm horizon glow */
+
+  /* Color: cool accent (cyan family — pulled from logo crescent) */
+  --c-sky:       #4DBCE0;   /* logo cyan, secondary accent */
+  --c-sky-2:     #2A9DD0;   /* deeper sky */
+  --c-sky-3:     #1A6E94;   /* depth cyan */
 
   /* Color: paper */
   --c-cream:     #F4ECDB;
@@ -29,9 +35,9 @@
 
   /* Color: utility */
   --c-line:               rgba(15, 27, 51, 0.10);
-  --c-line-warm:          rgba(232, 185, 88, 0.30);
+  --c-line-warm:          rgba(240, 140, 42, 0.30);
   --c-divider-on-dark:    rgba(244, 236, 219, 0.12);
-  --c-window-line-soft:   rgba(232, 185, 88, 0.30);
+  --c-window-line-soft:   rgba(240, 140, 42, 0.30);
   --c-overlay-navy:       rgba(15, 27, 51, 0.55);
   --c-overlay-navy-65:    rgba(15, 27, 51, 0.65);
   --c-overlay-navy-strong:rgba(15, 27, 51, 0.78);
@@ -126,8 +132,8 @@
   /* Elevation */
   --shadow-soft:    0 12px 40px -16px rgba(15, 27, 51, 0.35);
   --shadow-strong:  0 24px 60px -20px rgba(15, 27, 51, 0.55);
-  --shadow-glow:    0 0 80px -20px rgba(232, 185, 88, 0.50);
-  --shadow-window:  0 -120px 200px -60px rgba(232, 185, 88, 0.18) inset;
+  --shadow-glow:    0 0 80px -20px rgba(240, 140, 42, 0.50);
+  --shadow-window:  0 -120px 200px -60px rgba(240, 140, 42, 0.18) inset;
 
   /* Z-index */
   --z-skip:   100;
