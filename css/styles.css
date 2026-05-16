@@ -118,7 +118,7 @@ blockquote {
 
 .gold-rule {
   display: block;
-  width: 48px; height: 3px;
+  width: 56px; height: 4px;
   background: var(--c-window);
   margin: 0 auto var(--s-4);
   border-radius: 2px;
@@ -156,7 +156,16 @@ blockquote {
   background: var(--c-window-2);
   border-color: var(--c-window-2);
   color: var(--c-navy-900);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 0 0 1px rgba(212, 111, 26, 0.35), 0 8px 24px -10px rgba(240, 140, 42, 0.45);
+}
+.btn--primary:active {
+  background: var(--c-window-3);
+  border-color: var(--c-window-3);
+  transform: translateY(0);
+}
+.btn--primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(77, 188, 224, 0.55);
 }
 .btn--secondary {
   background: transparent;
@@ -193,8 +202,8 @@ blockquote {
 }
 .form-input:focus {
   outline: none;
-  border-color: var(--c-window);
-  box-shadow: 0 0 0 4px var(--c-line-warm);
+  border-color: var(--c-sky);
+  box-shadow: 0 0 0 4px rgba(77, 188, 224, 0.30);
 }
 .form-row { display: flex; gap: var(--s-3); flex-wrap: wrap; }
 .form-row .form-input { flex: 1 1 240px; }
@@ -246,7 +255,7 @@ blockquote {
   color: var(--c-cream);
   padding-block: var(--s-2);
 }
-.header__nav-link:hover { color: var(--c-window); }
+.header__nav-link:hover { color: var(--c-sky); }
 
 .header__dropdown { position: relative; }
 .header__dropdown-menu {
@@ -688,7 +697,7 @@ blockquote {
 .footer__brand p { color: var(--c-cream-2); margin-top: var(--s-4); max-width: 36ch; }
 .footer__links li { margin-bottom: var(--s-2); }
 .footer__links a { color: var(--c-cream-2); }
-.footer__links a:hover { color: var(--c-window); }
+.footer__links a:hover { color: var(--c-sky); }
 .footer__contact-item {
   display: flex; align-items: flex-start; gap: var(--s-2);
   margin-bottom: var(--s-2);
@@ -701,7 +710,7 @@ blockquote {
   color: var(--c-window);
 }
 .footer__contact-item a { color: inherit; }
-.footer__contact-item a:hover { color: var(--c-window); }
+.footer__contact-item a:hover { color: var(--c-sky); }
 .footer__bottom {
   display: flex; justify-content: space-between; align-items: center;
   padding-top: var(--s-6);
