@@ -405,7 +405,6 @@ blockquote {
   display: flex; flex-wrap: wrap; gap: var(--s-3);
 }
 @media (max-width: 720px) {
-  .hero { min-height: 100vh; }
   .hero__content { padding-block: var(--s-12); }
   .hero h1 { max-width: none; }
 }
