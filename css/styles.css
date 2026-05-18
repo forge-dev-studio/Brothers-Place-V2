@@ -355,7 +355,7 @@ blockquote {
 /* --- Hero (home) --------------------------------------------------------- */
 .hero {
   position: relative;
-  min-height: clamp(420px, 65vh, 620px);
+  min-height: clamp(360px, 50vh, 520px);
   display: flex; align-items: flex-end;
   color: var(--c-cream);
   overflow: hidden;
