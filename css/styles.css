@@ -355,7 +355,7 @@ blockquote {
 /* --- Hero (home) --------------------------------------------------------- */
 .hero {
   position: relative;
-  min-height: clamp(560px, 80vh, 820px);
+  min-height: clamp(420px, 65vh, 620px);
   display: flex; align-items: flex-end;
   color: var(--c-cream);
   overflow: hidden;
@@ -365,14 +365,13 @@ blockquote {
 .hero__bg {
   position: absolute; inset: 0;
   background-size: cover;
-  background-position: center 35%;
+  background-position: center;
   background-repeat: no-repeat;
   z-index: -2;
-  transform: scale(1.02);
 }
 .hero__overlay {
   position: absolute; inset: 0;
-  background: var(--gradient-hero-overlay);
+  background: var(--gradient-page-hero-overlay);
   z-index: -1;
 }
 .hero__content {
@@ -1188,20 +1187,7 @@ html { scrollbar-color: var(--c-window) var(--c-cream); scrollbar-width: thin; }
     transparent 100%
   );
 }
-.hero::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 78% 22%, rgba(77, 188, 224, 0.28), transparent 55%);
-  mix-blend-mode: screen;
-  pointer-events: none;
-  z-index: 0;
-}
 .hero .container { position: relative; z-index: 1; }
-@supports (background-attachment: fixed) {
-  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-    .hero__bg { background-attachment: fixed; }
-  }
-}
 
 /* Hero editorial eyebrow (replaces pill badge on hero only) */
 .hero__eyebrow {
