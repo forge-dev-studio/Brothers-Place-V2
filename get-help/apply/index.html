@@ -136,68 +136,21 @@
     <div class="container container--md">
       <div class="prose fade-up">
         <h2>Take the First Step</h2>
-        <p>Reaching out is the hardest part. We see that, and we are honored you are here. Fill out what you can. Skip what you cannot answer yet. A real person on our team will read your application and call you back, usually within two business days. Prefer to talk first? Call us anytime at <a href="tel:+17065099020">706.509.9020</a>.</p>
+        <p>Reaching out is the hardest part. We see that, and we are honored you are here. Click below to complete your application through our secure online form. A real person on our team will review it and follow up with you once space is available. Prefer to talk first? Call us anytime at <a href="tel:+17065099020">706.509.9020</a>.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== APPLY FORM ===== -->
-  <section class="section section--cream-2" aria-label="Residency application">
-    <div class="container container--md">
-      <div class="section-header fade-up">
+  <!-- ===== APPLY CTA ===== -->
+  <section class="section section--cream-2" aria-label="Apply for residency">
+    <div class="container container--md" style="text-align: center;">
+      <div class="fade-up">
         <span class="gold-rule"></span>
         <h2>Residency Application</h2>
-        <p>Required fields are marked with an asterisk. Everything you share is kept confidential.</p>
+        <p style="max-width: 56ch; margin: var(--s-3) auto var(--s-6); color: var(--c-ink-soft); font-size: var(--fs-lead);">Our application is hosted securely through SobrietyHub. It takes about 10 minutes to complete. Everything you share is confidential. We will follow up with you once space is available.</p>
+        <a href="https://www.sobrietyhub.app/dashboard/forms/public/290973f2-c2da-47a3-b092-fc1a565d459d" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Apply Here</a>
+        <p style="margin-top: var(--s-5); font-size: var(--fs-small); color: var(--c-ink-soft);">Prefer to talk first? Call us at <a href="tel:+17065099020">706.509.9020</a> and we will walk you through it.</p>
       </div>
-
-      <noscript>
-        <div class="card fade-up" style="border-left: 4px solid var(--c-window); margin-bottom: var(--s-6);">
-          <p><strong>Form not loading?</strong> No problem. Please call us directly at <a href="tel:+17065099020">706.509.9020</a> and a real person will help you start the application by phone.</p>
-        </div>
-      </noscript>
-
-      <form id="apply-form" class="form-section fade-up" aria-label="Brother's Place residency application">
-        <label for="apply-name" class="form-label">Full Name *</label>
-        <input type="text" id="apply-name" name="name" class="form-input" autocomplete="name" required>
-
-        <label for="apply-phone" class="form-label">Phone *</label>
-        <input type="tel" id="apply-phone" name="phone" class="form-input" autocomplete="tel" required>
-
-        <label for="apply-email" class="form-label">Email</label>
-        <input type="email" id="apply-email" name="email" class="form-input" autocomplete="email">
-
-        <label for="apply-age" class="form-label">Age *</label>
-        <input type="number" id="apply-age" name="age" class="form-input" min="18" max="100" required>
-
-        <label class="form-label" for="apply-housed-yes">Are you currently housed? *</label>
-        <div role="radiogroup" aria-label="Currently housed" style="display: flex; flex-wrap: wrap; gap: var(--s-4);">
-          <label style="display: inline-flex; align-items: center; gap: var(--s-2); font-weight: var(--fw-reg); color: var(--c-ink);">
-            <input type="radio" id="apply-housed-yes" name="housed" value="yes" required> Yes
-          </label>
-          <label style="display: inline-flex; align-items: center; gap: var(--s-2); font-weight: var(--fw-reg); color: var(--c-ink);">
-            <input type="radio" name="housed" value="no"> No
-          </label>
-          <label style="display: inline-flex; align-items: center; gap: var(--s-2); font-weight: var(--fw-reg); color: var(--c-ink);">
-            <input type="radio" name="housed" value="temporary"> Temporary or unstable
-          </label>
-        </div>
-
-        <label for="apply-substance" class="form-label">Substance Use History</label>
-        <textarea id="apply-substance" name="substance_history" class="form-input" rows="4" placeholder="What substances, how long, where you are now, what treatment you have done."></textarea>
-
-        <label for="apply-why" class="form-label">Why Now?</label>
-        <textarea id="apply-why" name="why_now" class="form-input" rows="4" placeholder="What is bringing you to Brother's Place at this point in your story?"></textarea>
-
-        <label for="apply-referral" class="form-label">How did you hear about Brother's Place?</label>
-        <input type="text" id="apply-referral" name="referral_source" class="form-input" placeholder="Friend, pastor, counselor, search, etc.">
-
-        <label for="apply-reference" class="form-label">Reference Contact</label>
-        <input type="text" id="apply-reference" name="reference" class="form-input" placeholder="Name and phone of a pastor, counselor, family member, or sponsor.">
-
-        <button type="submit" class="btn btn--primary btn--lg" style="width: 100%;">Submit Application</button>
-
-        <p style="text-align: center; margin-top: var(--s-4); font-size: var(--fs-small); color: var(--c-ink-soft);">By submitting, you give us permission to contact you about your application. We will not share your information with anyone outside our intake team.</p>
-      </form>
     </div>
   </section>
 
@@ -280,21 +233,6 @@
   <div class="mobile-donate-bar" aria-label="Donate">
     <a href="/Brothers-Place-V2/get-involved/donate/" class="btn btn--primary">Donate to Brother's Place</a>
   </div>
-  <script>
-    // Soft confirmation pattern (mirrors js/main.js newsletter stub)
-    document.addEventListener('DOMContentLoaded', function () {
-      var form = document.getElementById('apply-form');
-      if (!form) return;
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var btn = form.querySelector('button[type="submit"]');
-        if (btn) {
-          btn.textContent = 'Thank you, we will be in touch within 48 hours.';
-          btn.disabled = true;
-        }
-      });
-    });
-  </script>
   <script src="/Brothers-Place-V2/js/main.js" defer></script>
 </body>
 </html>
