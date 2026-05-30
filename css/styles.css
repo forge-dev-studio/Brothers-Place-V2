@@ -377,7 +377,7 @@ blockquote {
 }
 .hero__content {
   width: 100%;
-  padding-block: var(--s-16) var(--s-20);
+  padding-block: var(--s-16) var(--s-10);
 }
 .hero__content .badge--on-image { margin-bottom: var(--s-4); }
 .hero h1 {
