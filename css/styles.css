@@ -365,7 +365,7 @@ blockquote {
 }
 .hero__bg {
   position: absolute; inset: 0;
-  background-size: 100% auto;
+  background-size: 110% auto;
   background-position: center top;
   background-repeat: no-repeat;
   z-index: -2;
