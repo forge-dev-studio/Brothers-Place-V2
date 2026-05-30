@@ -405,6 +405,7 @@ blockquote {
 }
 .hero__ctas {
   display: flex; flex-wrap: wrap; gap: var(--s-3);
+  transform: translateY(var(--s-10));
 }
 @media (max-width: 720px) {
   .hero__content { padding-block: var(--s-12); }
