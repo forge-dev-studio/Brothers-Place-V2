@@ -1326,15 +1326,10 @@ html { scrollbar-color: var(--c-window) var(--c-cream); scrollbar-width: thin; }
 .section-divider--up + section.section--feature,
 .section-divider--up + section.cta-banner { margin-top: -1px; }
 
-/* --- Pillars: bento grid + premium card hover --------------------------- */
+/* --- Pillars: even 4-up grid + premium card hover ----------------------- */
 .pillars .grid--4 {
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(220px, auto);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--s-6);
-}
-.pillars .grid--4 > .pillar-card:nth-child(1) {
-  grid-column: span 1;
-  grid-row: span 2;
 }
 .pillar-card {
   position: relative;
@@ -1384,30 +1379,14 @@ html { scrollbar-color: var(--c-window) var(--c-cream); scrollbar-width: thin; }
 }
 .pillar-card__icon svg { width: 100%; height: 100%; }
 
-/* Bento featured card: bigger title, more breathing room */
-.pillars .grid--4 > .pillar-card:nth-child(1) .card__title {
-  font-size: var(--fs-h2);
-}
-.pillars .grid--4 > .pillar-card:nth-child(1) .pillar-card__icon {
-  width: 72px; height: 72px;
-}
-
 @media (max-width: 900px) {
   .pillars .grid--4 {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: auto;
-  }
-  .pillars .grid--4 > .pillar-card:nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 1;
   }
 }
 @media (max-width: 560px) {
   .pillars .grid--4 {
     grid-template-columns: 1fr;
-  }
-  .pillars .grid--4 > .pillar-card:nth-child(1) {
-    grid-column: span 1;
   }
 }
 
