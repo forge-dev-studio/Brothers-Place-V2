@@ -96,6 +96,12 @@ var m=[25,50,75,90],hit={};addEventListener('scroll',function(){var h=d.document
 var p=scrollY/h*100;for(var i=0;i<m.length;i++)if(p>=m[i]&&!hit[m[i]]){hit[m[i]]=1;ev('scroll_depth',{percent_scrolled:m[i]})}},{passive:true});})();
   </script>
   <!-- ga4:end -->
+
+  <!-- forge-ga4:begin | our own GA4 property (Synergy/Forge Analytics).
+       Kept OUTSIDE the generator-managed ga4 block above so a regeneration of that
+       block does not wipe it. Reuses the loader and dataLayer the block sets up. -->
+  <script>window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments)};gtag('config','G-QC6KJHM51K');</script>
+  <!-- forge-ga4:end -->
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
