@@ -980,6 +980,11 @@ blockquote {
 }
 .contact-card__row a { color: var(--c-navy-700); }
 .contact-card__row a:hover { color: var(--c-window-2); }
+/* Details-only variant: no second column, so center the single track. */
+.contact-card--solo {
+  grid-template-columns: min(34rem, 100%);
+  justify-content: center;
+}
 @media (max-width: 720px) {
   .contact-card { grid-template-columns: 1fr; gap: var(--s-6); }
 }
