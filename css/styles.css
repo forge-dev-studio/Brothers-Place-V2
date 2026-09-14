@@ -147,31 +147,37 @@ blockquote {
 .section--has-side-cta { position: relative; }
 .badge--side {
   position: absolute;
-  top: var(--s-20);
+  top: var(--s-16);
   left: var(--s-6);
-  max-width: 200px;
-  padding: var(--s-3) var(--s-4);
-  border-radius: 14px;              /* softened rectangle — pill wouldn't wrap cleanly */
+  max-width: 800px;                 /* 4× the previous 200px */
+  padding: var(--s-12) var(--s-16); /* 4× the previous 0.75rem 1rem */
+  border-radius: 56px;              /* 4× the previous 14px */
   white-space: normal;
   text-align: left;
-  line-height: 1.35;
+  line-height: 1.2;
   letter-spacing: 0;                /* override .badge's tracking-widest */
   text-transform: none;             /* override .badge's uppercase */
-  font-size: var(--fs-small);
+  font-size: 3.75rem;               /* 4× the previous var(--fs-small) 0.9375rem */
+  font-weight: var(--fw-bold);
   align-items: flex-start;
   background: var(--c-cream);
   color: var(--c-window-3);
   border-color: var(--c-window);
-  box-shadow: 0 6px 18px rgba(15, 27, 51, 0.08);
+  border-width: 3px;
+  box-shadow: 0 20px 48px rgba(15, 27, 51, 0.14);
 }
 .badge--side svg {
-  margin-top: 3px;                  /* nudge arrow down to align with first line */
+  width: 56px; height: 56px;        /* 4× the previous 14px */
+  margin-top: 12px;                 /* 4× the previous 3px */
 }
-@media (max-width: 1180px) {
+/* Very wide viewports keep the 4× absolute placement.
+   Below the point where an 800px-wide chip in the left gutter starts eating
+   the section container, drop it back into normal flow and scale down. */
+@media (max-width: 1600px) {
   .badge--side {
     position: static;
-    max-width: 360px;
-    margin: 0 auto var(--s-8);
+    max-width: min(720px, 100%);
+    margin: 0 auto var(--s-10);
     top: auto;
     left: auto;
     display: flex;
@@ -180,6 +186,22 @@ blockquote {
     justify-content: center;
   }
   .badge--side svg { margin-top: 0; }
+}
+@media (max-width: 900px) {
+  .badge--side {
+    font-size: 2.25rem;             /* proportional step-down */
+    padding: var(--s-8) var(--s-10);
+    border-radius: 36px;
+  }
+  .badge--side svg { width: 40px; height: 40px; }
+}
+@media (max-width: 560px) {
+  .badge--side {
+    font-size: 1.5rem;
+    padding: var(--s-5) var(--s-6);
+    border-radius: 24px;
+  }
+  .badge--side svg { width: 28px; height: 28px; }
 }
 
 .gold-rule {
