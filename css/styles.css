@@ -116,6 +116,72 @@ blockquote {
   backdrop-filter: blur(6px);
 }
 
+/* Badge as a clickable CTA — inherits pill shape, adds hover + arrow */
+.badge--cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  text-decoration: none;
+  transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+}
+.badge--cta svg { width: 14px; height: 14px; flex: 0 0 auto; }
+.badge--cta:hover {
+  transform: translateY(-1px);
+  background: var(--c-window);
+  color: var(--c-cream);
+  border-color: var(--c-window);
+}
+.badge--cta.badge--on-image:hover {
+  background: var(--c-window);
+  color: var(--c-cream);
+  border-color: var(--c-window);
+}
+.badge--cta:focus-visible {
+  outline: 2px solid var(--c-window);
+  outline-offset: 3px;
+}
+
+/* Left-margin placement (used on the Events page beside the Rome's Got Talent section).
+   On desktop it sits in the section's left gutter, outside the 880px container.
+   On narrower viewports it drops back into normal flow, centered above the section content. */
+.section--has-side-cta { position: relative; }
+.badge--side {
+  position: absolute;
+  top: var(--s-20);
+  left: var(--s-6);
+  max-width: 200px;
+  padding: var(--s-3) var(--s-4);
+  border-radius: 14px;              /* softened rectangle — pill wouldn't wrap cleanly */
+  white-space: normal;
+  text-align: left;
+  line-height: 1.35;
+  letter-spacing: 0;                /* override .badge's tracking-widest */
+  text-transform: none;             /* override .badge's uppercase */
+  font-size: var(--fs-small);
+  align-items: flex-start;
+  background: var(--c-cream);
+  color: var(--c-window-3);
+  border-color: var(--c-window);
+  box-shadow: 0 6px 18px rgba(15, 27, 51, 0.08);
+}
+.badge--side svg {
+  margin-top: 3px;                  /* nudge arrow down to align with first line */
+}
+@media (max-width: 1180px) {
+  .badge--side {
+    position: static;
+    max-width: 360px;
+    margin: 0 auto var(--s-8);
+    top: auto;
+    left: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  .badge--side svg { margin-top: 0; }
+}
+
 .gold-rule {
   display: block;
   width: 56px; height: 4px;
