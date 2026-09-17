@@ -265,12 +265,12 @@ var p=scrollY/h*100;for(var i=0;i<m.length;i++)if(p>=m[i]&&!hit[m[i]]){hit[m[i]]
         <h2>Become a Partner</h2>
         <p>Tell us about your church and we will follow up to start the conversation.</p>
       </div>
-      <form class="form-section fade-up" id="church-form" aria-label="Church partnership inquiry form">
+      <form class="form-section fade-up" id="church-form" aria-label="Church partnership inquiry form" data-form="church" data-success-message="Thank you. We will reach out soon to talk about partnering together.">
         <label class="form-label" for="ch-church">Church Name</label>
         <input class="form-input" type="text" id="ch-church" name="church" required>
 
         <label class="form-label" for="ch-pastor">Lead Pastor Name</label>
-        <input class="form-input" type="text" id="ch-pastor" name="pastor" required>
+        <input class="form-input" type="text" id="ch-pastor" name="name" required>
 
         <label class="form-label" for="ch-email">Email</label>
         <input class="form-input" type="email" id="ch-email" name="email" required>
@@ -281,16 +281,21 @@ var p=scrollY/h*100;for(var i=0;i<m.length;i++)if(p>=m[i]&&!hit[m[i]]){hit[m[i]]
         <label class="form-label" for="ch-tier">Partnership Tier of Interest</label>
         <select class="form-input" id="ch-tier" name="tier">
           <option value="">Select a tier</option>
-          <option value="praying">Praying Church</option>
-          <option value="sending">Sending Church</option>
-          <option value="anchor">Anchor Church</option>
-          <option value="unsure">Not sure, let's talk</option>
+          <option value="Praying Church">Praying Church</option>
+          <option value="Sending Church">Sending Church</option>
+          <option value="Anchor Church">Anchor Church</option>
+          <option value="Not sure yet">Not sure, let's talk</option>
         </select>
 
         <label class="form-label" for="ch-message">Anything else?</label>
         <textarea class="form-input" id="ch-message" name="message" rows="3" placeholder="Optional. Tell us about your congregation."></textarea>
 
+        <div class="hp-field" aria-hidden="true">
+          <label for="ch-company">Company</label>
+          <input type="text" id="ch-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit" class="btn btn--primary btn--lg">Submit Partnership Inquiry</button>
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>

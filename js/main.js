@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountUp();
   initStickyHeader();
   initDonateTiers();
-  initNewsletterStub();
+  initForms();
 });
 
 /* --- Mobile Navigation ----------------------- */
@@ -159,34 +159,108 @@ function initDonateTiers() {
   });
 }
 
-/* --- Soft-submit forms (newsletter, apply, volunteer, etc.) ----------- */
-function initNewsletterStub() {
-  // Any form with data-soft-submit, or known IDs, gets a no-backend
-  // "thank you" confirmation in lieu of an actual POST. Backends slot in later.
-  const SELECTORS = [
-    '[data-soft-submit]',
-    '#newsletter-form',
-    '#apply-form',
-    '#volunteer-form',
-    '#church-form',
-    '#contact-form',
-    '#partners-form',
-  ];
-  const forms = new Set();
-  SELECTORS.forEach(sel => document.querySelectorAll(sel).forEach(f => forms.add(f)));
-  if (!forms.size) return;
+/* --- Forms: contact, volunteer, church partners, newsletter ------------ */
+// Every form with data-form posts to the shared Forge lead worker, which emails the
+// office (recipients live in the worker's NOTIFY_BROTHERS_PLACE). data-form must be one
+// of the worker's formLabels keys: contact, volunteer, church, newsletter.
+const LEAD_ENDPOINT = 'https://forge-lead-worker.synergycloud.workers.dev/lead?client=brothers-place';
 
-  forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
+function initForms() {
+  rememberVisit();
+  document.querySelectorAll('form[data-form]').forEach((form) => {
+    const button = form.querySelector('button[type="submit"]');
+    // The newsletter's line sits after its one-row form, linked by the form id.
+    const status = form.querySelector('[data-form-status]')
+      || document.querySelector(`[data-form-status="${form.id}"]`);
+    const label = button ? button.textContent : '';
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const button = form.querySelector('button[type="submit"], input[type="submit"]');
-      const message = form.dataset.successMessage || 'Thank you, we will be in touch.';
-      if (button) {
-        button.textContent = message;
-        button.disabled = true;
+      if (form.dataset.busy) return;
+      form.dataset.busy = '1';
+
+      const data = new FormData(form);
+      const payload = { form: form.dataset.form, page: location.pathname, ...visitSource() };
+      // Checkbox groups repeat a name, so every value of a name is kept.
+      new Set(data.keys()).forEach((key) => {
+        payload[key] = data.getAll(key).map((v) => String(v).trim()).filter(Boolean).join(', ');
+      });
+
+      if (button) { button.disabled = true; button.textContent = 'Sending...'; }
+      setStatus(status, '');
+      let outcome = 'error';
+      try {
+        const res = await fetch(LEAD_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) outcome = 'sent';
+        else if (res.status === 422) outcome = 'invalid';
+      } catch (err) {
+        outcome = 'error';
       }
-      const note = form.querySelector('[data-soft-confirm]');
-      if (note) note.hidden = false;
+      delete form.dataset.busy;
+      if (button) { button.disabled = false; button.textContent = label; }
+
+      if (outcome === 'sent') {
+        form.reset();
+        setStatus(status, form.dataset.successMessage || 'Thank you. We will be in touch soon.', 'ok');
+      } else if (outcome === 'invalid') {
+        setStatus(status, 'Please check your name and email address, then try again.', 'error');
+      } else {
+        // Never pretend it went through: give them a way to reach us today.
+        setStatus(status, 'Sorry, your message did not go through. Please try again, or call ' +
+          '<a href="tel:+17065099020">706.509.9020</a> or email ' +
+          '<a href="mailto:maloy@brothersplace.org">maloy@brothersplace.org</a>.', 'error');
+      }
     });
   });
+}
+
+function setStatus(el, html, kind) {
+  if (!el) return;
+  el.innerHTML = html;
+  el.classList.toggle('form-status--ok', kind === 'ok');
+  el.classList.toggle('form-status--error', kind === 'error');
+}
+
+// The first page of the visit and where the visitor came from, so the email can say
+// "Google search" or "Link from facebook.com" even when they filled in a form three pages later.
+function rememberVisit() {
+  try {
+    if (sessionStorage.getItem('bp_landing') !== null) return;
+    sessionStorage.setItem('bp_landing', location.pathname + location.search);
+    sessionStorage.setItem('bp_referrer', document.referrer || '');
+  } catch (err) { /* storage blocked: visitSource falls back to this page */ }
+}
+
+function visitSource() {
+  let landing = location.pathname + location.search;
+  let referrer = document.referrer || '';
+  try {
+    landing = sessionStorage.getItem('bp_landing') || landing;
+    const stored = sessionStorage.getItem('bp_referrer');
+    if (stored !== null) referrer = stored;
+  } catch (err) { /* use this page */ }
+
+  const params = new URLSearchParams(landing.split('?')[1] || '');
+  const attribution = { landing };
+  if (referrer) attribution.referrer = referrer.slice(0, 300);
+  ['utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'gbraid', 'wbraid', 'fbclid'].forEach((k) => {
+    if (params.get(k)) attribution[k] = params.get(k).slice(0, 200);
+  });
+
+  let host = '';
+  try { host = referrer ? new URL(referrer).hostname.replace(/^www\./, '') : ''; } catch (err) { host = ''; }
+  if (host === location.hostname.replace(/^www\./, '')) host = '';
+
+  let source = 'Direct visit';
+  if (attribution.gclid || attribution.gbraid || attribution.wbraid) source = 'Google Ads';
+  else if (attribution.fbclid) source = 'Facebook or Instagram';
+  else if (attribution.utm_source) source = `Link tagged ${attribution.utm_source}`;
+  else if (/(^|\.)google\./.test(host)) source = 'Google search';
+  else if (/(^|\.)(bing|duckduckgo|yahoo)\./.test(host)) source = `Search (${host})`;
+  else if (host) source = `Link from ${host}`;
+  return { source, attribution };
 }

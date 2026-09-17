@@ -256,7 +256,7 @@ var p=scrollY/h*100;for(var i=0;i<m.length;i++)if(p>=m[i]&&!hit[m[i]]){hit[m[i]]
         <h2>Tell Us You're Interested</h2>
         <p>Fill this out and Maloy or a team member will follow up within a few days.</p>
       </div>
-      <form class="form-section fade-up" id="volunteer-form" aria-label="Volunteer interest form">
+      <form class="form-section fade-up" id="volunteer-form" aria-label="Volunteer interest form" data-form="volunteer" data-success-message="Thank you for offering to serve. We will be in touch soon.">
         <label class="form-label" for="vol-name">Full Name</label>
         <input class="form-input" type="text" id="vol-name" name="name" required>
 
@@ -269,16 +269,16 @@ var p=scrollY/h*100;for(var i=0;i<m.length;i++)if(p>=m[i]&&!hit[m[i]]){hit[m[i]]
         <label class="form-label">Areas of Interest</label>
         <div style="display: flex; flex-direction: column; gap: var(--s-2); margin-bottom: var(--s-4);">
           <label style="display: flex; gap: var(--s-2); align-items: center; font-size: var(--fs-small); color: var(--c-ink-soft); font-weight: var(--fw-reg);">
-            <input type="checkbox" name="interest" value="mentor"> Mentor One Man
+            <input type="checkbox" name="interest" value="Mentor One Man"> Mentor One Man
           </label>
           <label style="display: flex; gap: var(--s-2); align-items: center; font-size: var(--fs-small); color: var(--c-ink-soft); font-weight: var(--fw-reg);">
-            <input type="checkbox" name="interest" value="cook"> Cook a Meal
+            <input type="checkbox" name="interest" value="Cook a Meal"> Cook a Meal
           </label>
           <label style="display: flex; gap: var(--s-2); align-items: center; font-size: var(--fs-small); color: var(--c-ink-soft); font-weight: var(--fw-reg);">
-            <input type="checkbox" name="interest" value="class"> Lead a Class
+            <input type="checkbox" name="interest" value="Lead a Class"> Lead a Class
           </label>
           <label style="display: flex; gap: var(--s-2); align-items: center; font-size: var(--fs-small); color: var(--c-ink-soft); font-weight: var(--fw-reg);">
-            <input type="checkbox" name="interest" value="maintenance"> Property and Maintenance
+            <input type="checkbox" name="interest" value="Property and Maintenance"> Property and Maintenance
           </label>
         </div>
 
@@ -288,7 +288,12 @@ var p=scrollY/h*100;for(var i=0;i<m.length;i++)if(p>=m[i]&&!hit[m[i]]){hit[m[i]]
         <label class="form-label" for="vol-church">Church or Community Affiliation</label>
         <input class="form-input" type="text" id="vol-church" name="church" placeholder="Optional">
 
+        <div class="hp-field" aria-hidden="true">
+          <label for="vol-company">Company</label>
+          <input type="text" id="vol-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit" class="btn btn--primary btn--lg">Submit Volunteer Interest</button>
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>

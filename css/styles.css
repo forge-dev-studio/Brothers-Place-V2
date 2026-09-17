@@ -741,7 +741,7 @@ blockquote {
 .newsletter p { color: var(--c-ink-soft); max-width: 520px; margin: 0 auto var(--s-6); }
 .newsletter__form {
   display: flex; gap: var(--s-3);
-  max-width: 480px;
+  max-width: 600px;
   margin: 0 auto;
 }
 .newsletter__form .form-input { flex: 1; }
@@ -1236,6 +1236,18 @@ blockquote {
 .form-section .form-label { margin-top: var(--s-5); }
 .form-section .form-label:first-of-type { margin-top: 0; }
 .form-section .btn--primary { margin-top: var(--s-8); }
+
+/* --- Form send status + spam trap ---------------------------------------- */
+/* Doubled classes so these beat `.newsletter p`, which sets its own color and margin. */
+.form-status.form-status { margin: var(--s-3) 0 0; font-weight: var(--fw-semi); }
+.form-status.form-status:empty { margin: 0; }
+.form-status.form-status--ok { color: var(--c-navy-900); }
+.form-status.form-status--error { color: #9B2C1C; }
+.form-status a { color: inherit; text-decoration: underline; }
+.newsletter .form-status.form-status { margin: var(--s-4) auto 0; text-align: center; }
+.newsletter .form-status.form-status:empty { margin: 0 auto; }
+/* Off-screen, not display:none: bots skip hidden inputs but fill positioned ones. */
+.hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 
 /* --- Welcome (home, between hero and proof) ----------------------------- */
 .welcome { background: var(--c-cream); }

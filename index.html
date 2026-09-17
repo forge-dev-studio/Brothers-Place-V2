@@ -405,11 +405,18 @@ var p=scrollY/h*100;for(var i=0;i<m.length;i++)if(p>=m[i]&&!hit[m[i]]){hit[m[i]]
     <div class="container fade-up">
       <h2>Get Updates</h2>
       <p>A short monthly email with what's happening at the house and how to help.</p>
-      <form class="newsletter__form" id="newsletter-form" aria-label="Newsletter signup form">
+      <form class="newsletter__form" id="newsletter-form" aria-label="Newsletter signup form" data-form="newsletter" data-success-message="Thank you for signing up. Watch your inbox for our next update.">
+        <label for="newsletter-name" class="sr-only">First name</label>
+        <input type="text" id="newsletter-name" name="name" class="form-input" placeholder="First name" autocomplete="given-name" required aria-required="true">
         <label for="newsletter-email" class="sr-only">Email address</label>
-        <input type="email" id="newsletter-email" class="form-input" placeholder="Your email address" required aria-required="true">
+        <input type="email" id="newsletter-email" name="email" class="form-input" placeholder="Your email address" autocomplete="email" required aria-required="true">
+        <div class="hp-field" aria-hidden="true">
+          <label for="newsletter-company">Company</label>
+          <input type="text" id="newsletter-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit" class="btn btn--primary">Subscribe</button>
       </form>
+      <p class="form-status" data-form-status="newsletter-form" role="status" aria-live="polite"></p>
     </div>
   </section>
 
