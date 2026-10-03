@@ -6,6 +6,7 @@
   "scripts": {
     "build:images": "node scripts/build-image-assets.js",
     "audit": "node scripts/playwright-audit.js",
+    "test": "node --test tests/form-trap.test.mjs",
     "serve": "python -m http.server 5500"
   },
   "dependencies": {
