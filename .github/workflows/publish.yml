@@ -22,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: node tools/collect-site.mjs _site
+      - run: node tools/build-llms.mjs _site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
