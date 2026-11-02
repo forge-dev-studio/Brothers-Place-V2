@@ -45,6 +45,14 @@ test('the Privacy and Terms webpage is left out', () => {
   for (const loc of skipped) assert.ok(!txt.includes('](' + loc + ')'), `${loc} should be left out`)
 })
 
+test('the word "dollar" without a figure is not a price: Donate and Financials keep their descriptions', () => {
+  for (const path of ['get-involved/donate', 'about/financials']) {
+    const line = txt.split('\n').find((l) => l.includes('/' + path + '/)'))
+    assert.ok(line, `${path} should be listed`)
+    assert.match(line, /\): \S/, `${path} should keep its description`)
+  }
+})
+
 test('no dollar figure, no em or en dash, LF line endings, one newline at the end', () => {
   assert.ok(!txt.includes('$'))
   assert.ok(!/[–—]/.test(txt))

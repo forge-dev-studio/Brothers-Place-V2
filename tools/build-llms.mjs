@@ -32,7 +32,7 @@ const NO_DESCRIPTION = new Set(['get-help/resources']);   // client rule: these 
 // ---- End of the website-specific part ----
 
 const LEFT_OUT = /(^|\/)(404|privacy|terms|thank-?you|thanks)(\/|$)/i;   // utility webpages
-const PRICE = /\$|\bdollars?\b|\bUSD\b/i;
+const PRICE = /\$|\b\d[\d,.]*\s*(?:dollars?|USD)\b|\bUSD\s*\d/i;           // a figure, not the word: "92 percent of every dollar" stays
 const DASH = /[\u2013\u2014]/;                                              // no em or en dashes in website copy
 const drop = s => PRICE.test(s) || DASH.test(s);                            // words that keep the link but not the text
 
