@@ -103,13 +103,17 @@ function runPage({ trap, reply, withMainJs = true }) {
   for (const l of docListeners.filter((l) => l.type === 'submit' && l.capture)) l.fn(event)
   for (const fn of formListeners) fn(event)
   const names = () => dataLayer.map((a) => Array.from(a)).filter((a) => a[0] === 'event').map((a) => a[1])
+  const reasons = () => dataLayer.map((a) => Array.from(a)).filter((a) => a[0] === 'event').map((a) => (a[2] || {}).reason)
   return {
-    posts, names, status,
+    posts, names, reasons, status,
     async settle() { release(); await new Promise((r) => setImmediate(r)); await new Promise((r) => setImmediate(r)) },
   }
 }
-const ok = { ok: true, status: 200 }
-const res = (status) => ({ ok: status >= 200 && status < 300, status })
+// The worker answers JSON. A sender on its spam block list gets 200 with possibleSpam: true (spam
+// reports, 2026-11-07): delivered labeled, or held, so it is never a lead.
+const reply = (status, body) => ({ ok: status >= 200 && status < 300, status, json: async () => body })
+const ok = reply(200, { ok: true })
+const res = (status) => reply(status, { ok: false })
 
 test('control: the managed GA4 block alone counts every submit attempt as generate_lead (the bug)', () => {
   const run = runPage({ trap: '', reply: ok, withMainJs: false })
@@ -126,7 +130,36 @@ test('a filled trap sends once as company, is not sent as itself, and fires form
   assert.deepEqual(run.names(), [], 'nothing fires on the attempt, not even the managed block\'s generate_lead')
   await run.settle()
   assert.deepEqual(run.names(), ['form_possible_spam'])
+  assert.deepEqual(run.reasons(), ['honeypot'])
   assert.match(run.status.innerHTML, /Thank you/, 'the visitor still sees thanks, the message was delivered')
+})
+
+test('a block-listed sender (possibleSpam: true) fires form_possible_spam with reason block_list, never generate_lead', async () => {
+  const run = runPage({ trap: '', reply: reply(200, { ok: true, possibleSpam: true }) })
+  assert.equal(run.posts.length, 1)
+  assert.equal(run.posts[0].company, '', 'company is present and empty')
+  assert.deepEqual(run.names(), [], 'nothing fires on the attempt')
+  await run.settle()
+  assert.deepEqual(run.names(), ['form_possible_spam'])
+  assert.deepEqual(run.reasons(), ['block_list'])
+  assert.match(run.status.innerHTML, /Thank you/, 'the visitor still sees thanks, the message was delivered')
+})
+
+test('a filled trap the worker also flags keeps reason honeypot', async () => {
+  const run = runPage({ trap: 'Acme', reply: reply(200, { ok: true, possibleSpam: true }) })
+  await run.settle()
+  assert.deepEqual(run.names(), ['form_possible_spam'])
+  assert.deepEqual(run.reasons(), ['honeypot'])
+})
+
+test('possibleSpam that is not exactly true, or a 2xx body that is not JSON, is an ordinary lead', async () => {
+  const notJson = { ok: true, status: 200, json: async () => { throw new SyntaxError('Unexpected token') } }
+  for (const r of [reply(200, { ok: true, possibleSpam: false }), reply(200, { ok: true, possibleSpam: 'true' }), notJson]) {
+    const run = runPage({ trap: '', reply: r })
+    await run.settle()
+    assert.deepEqual(run.names(), ['generate_lead'])
+    assert.match(run.status.innerHTML, /Thank you/)
+  }
 })
 
 test('an empty or whitespace trap sends company "" and fires generate_lead exactly once, after the 2xx', async () => {
