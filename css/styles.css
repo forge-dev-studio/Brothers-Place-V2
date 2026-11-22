@@ -20,6 +20,15 @@ body {
 img, svg, video { display: block; max-width: 100%; height: auto; }
 a { color: var(--c-navy-700); text-decoration: none; transition: color var(--dur-fast) var(--ease); }
 a:hover { color: var(--c-window-2); }
+/* Links inside body copy are underlined so they read as links on a phone (11/22/2026) */
+section p a:not(.btn),
+section li a:not(.btn),
+.contact-card__row span a {
+  font-weight: var(--fw-semi);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
 button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; }
 input, textarea, select { font: inherit; color: inherit; }
 ul, ol { list-style: none; }
@@ -614,7 +623,7 @@ blockquote {
 .pillar-card p { color: var(--c-ink-soft); flex: 1; margin-bottom: var(--s-4); }
 
 .card__link {
-  display: inline-flex; align-items: center; gap: var(--s-2);
+  display: inline-block; /* the arrow follows the last word when a longer link wraps */
   font-weight: var(--fw-semi);
   font-size: var(--fs-small);
   letter-spacing: var(--tracking-wide);
@@ -623,11 +632,12 @@ blockquote {
   margin-top: auto;
 }
 .card__link::after {
-  content: "→";
-  transition: transform var(--dur-fast) var(--ease);
+  content: "\00a0→"; /* the no-break space keeps the arrow on the last word's line */
+  margin-left: 0.25em;
+  transition: margin-left var(--dur-fast) var(--ease);
 }
 .card__link:hover { color: var(--c-window-2); }
-.card__link:hover::after { transform: translateX(4px); }
+.card__link:hover::after { margin-left: calc(0.25em + 4px); }
 
 /* --- Featured story / testimonial ---------------------------------------- */
 .section--feature {
